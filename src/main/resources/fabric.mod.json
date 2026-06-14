@@ -1,11 +1,11 @@
 {
 	"schemaVersion": 1,
-	"id": "examplemod",
+	"id": "blockexamplemod",
 	"version": "${version}",
-	"name": "Example Mod",
+	"name": "Block Example Mod",
 	"description": "This mod aims to help new BTA modders.",
 	"authors": [
-		"Turnip Labs"
+		"camoweed_"
 	],
 	"contact": {
 		"homepage": "",
@@ -16,20 +16,26 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"turniplabs.examplemod.ExampleMod"
+          "camoweed.blockexamplemod.BlockExampleMod"
 		],
 		"beforeGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+          "camoweed.blockexamplemod.BlockExampleMod"
 		],
 		"afterGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+          "camoweed.blockexamplemod.BlockExampleMod"
 		],
 		"recipesReady": [
-			"turniplabs.examplemod.ExampleMod"
+          "camoweed.blockexamplemod.BlockExampleMod"
+		],
+		"initModels": [
+          "camoweed.blockexamplemod.BlockExampleModels"
+		],
+		"onInitialize": [
+          "camoweed.blockexamplemod.BlockExampleMod"
 		]
 	},
 	"mixins": [
-		"examplemod.mixins.json"
+		"blockexamplemod.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=${fabricloader}",

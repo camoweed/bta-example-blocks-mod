@@ -1,0 +1,5 @@
+tile.blockexamplemod.basic.name = Basic Block
+tile.blockexamplemod.basic.desc = A basic block that does nothing without a custom texture.
+
+tile.blockexamplemod.custom.name = Custom Block
+tile.blockexamplemod.custom.desc = A custom block with a single texture.
