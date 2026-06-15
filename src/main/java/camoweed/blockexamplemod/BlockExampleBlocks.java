@@ -3,9 +3,14 @@ package camoweed.blockexamplemod;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicGlass;
+import net.minecraft.core.block.BlockLogicRotatable;
 import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.sound.BlockSounds;
+import net.minecraft.core.util.helper.Side;
+import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 import turniplabs.halplibe.helper.BlockBuilder;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
@@ -38,6 +43,7 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 	// we need to declare our blocks
 	public static Block<?> BASIC_BLOCK;
 	public static Block<?> CUSTOM_BLOCK;
+	public static Block<?> ROTATABLE_BLOCK;
 
 	// the fun part
 	// control + click BlockBuilder for more detailed info
@@ -50,35 +56,35 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 				(new CreativeInventoryPlacement.Category
 					(CreativeInventoryCategory.BASICS)
 				);
-
-		// see BlockExampleModels.java we will give this block a custom texture and a place in the creative menu
-		BlockBuilder CustomBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS))
-			// we will give it a sound too
-			.setBlockSound(BlockSounds.METAL);
-
-		//	.setHardness(1.0F)		// time to break the block
-		//	.setResistance(1.0F) 	// blast resistance
-		//	.setLuminance(0)		// light level 0-15
-		//	.setLightOpacity(15)	// 0 is glass
-		//	.setSlipperiness(0.6F)	// 0.6F is default 0.98F is ice
-		//	.setFlammability(0, 0)
-		//	.setInfiniburn()		// infinite fire burn
-		//	.setUnbreakable()		// bedrock behaviour
-		//	.setBlockSound(BlockSounds.GLASS)
-		//	.setTags(BlockTags.GROWS_CACTI, BlockTags.PLANTABLE_IN_JAR);
-
+		// now we will build it
 		BASIC_BLOCK = BasicBlock
-			.build("basic",
+			// .build(translationKey, name, numericId, logicSupplier);
+			.build(
+				"basic",
 				"basic_block",
 				newBlockID(),
-				b -> new BlockLogic(b, Materials.CLOTH)
-			);
+				b -> new BlockLogic(b, Materials.CLOTH));
 		// translation key will be tile.MOD_ID.translationKey
 		// refer to /resources/assets/blockexamplemod/lang/en_US/en_US.lang
 
+		// new block
+		// for textures see BlockExampleModels.java
+		BlockBuilder CustomBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS))
+			// we will give it a sound too
+			.setBlockSound(BlockSounds.CRYSTAL);
 		// new lines are optional. spaces too if you're insane
 		CUSTOM_BLOCK=CustomBlock.build("custom","custom_block",newBlockID(),b -> new BlockLogic(b, Materials.CLOTH));
-		// build(translationKey, name, numericId, logicSupplier);
+
+		// new block
+		// rotatable ( like a workbench )
+		BlockBuilder RotatableBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS));
+		ROTATABLE_BLOCK=RotatableBlock.build("rotatable","rotatable_block",newBlockID(),b -> new BlockLogicRotatable(b, Materials.WOOD) {
+			@Override
+			public void onPlacedOnSide(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+				super.onPlacedOnSide(world, tilePos, side, xHit, yHit);
+			}
+		});
+
 	}
 	@Override
 	public void afterBlockInit() {
