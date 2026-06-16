@@ -1,9 +1,6 @@
 package camoweed.blockexamplemod;
 
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.block.BlockLogicGlass;
-import net.minecraft.core.block.BlockLogicRotatable;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.sound.BlockSounds;
@@ -44,6 +41,7 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 	public static Block<?> BASIC_BLOCK;
 	public static Block<?> CUSTOM_BLOCK;
 	public static Block<?> ROTATABLE_BLOCK;
+	public static Block<?> VERY_ROTATABLE_BLOCK;
 
 	// the fun part
 	// control + click BlockBuilder for more detailed info
@@ -83,8 +81,18 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 			public void onPlacedOnSide(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
 				super.onPlacedOnSide(world, tilePos, side, xHit, yHit);
 			}
-		});
+		}
+		);
 
+		// new block
+		BlockBuilder VeryRotatableBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS));
+		VERY_ROTATABLE_BLOCK=VeryRotatableBlock.build("very_rotatable","very_rotatable_block",newBlockID(),b -> new BlockLogicVeryRotatable(b, Materials.WOOD) {
+			@Override
+			public void onPlacedOnSide(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+				world.setBlockDataNotify(tilePos, setDirection(0, side.direction()));
+			}
+		}
+		);
 	}
 	@Override
 	public void afterBlockInit() {
