@@ -15,6 +15,11 @@ import turniplabs.halplibe.util.BlockInitEntrypoint;
 
 import static camoweed.blockexamplemod.BlockExampleMod.MOD_ID;
 
+/*
+ - Simple blocks using basic models
+ - Rotatable blocks using block logic
+
+*/
 // implement BlockInitEntrypoint
 public class BlockExampleBlocks implements BlockInitEntrypoint {
 
@@ -56,7 +61,6 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 				);
 		// now we will build it
 		BASIC_BLOCK = BasicBlock
-			// .build(translationKey, name, numericId, logicSupplier);
 			.build(
 				"basic",
 				"basic_block",
@@ -66,7 +70,7 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 		// refer to /resources/assets/blockexamplemod/lang/en_US/en_US.lang
 
 		// new block
-		// for textures see BlockExampleModels.java
+		// for custom textures see BlockExampleModels.java
 		BlockBuilder CustomBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS))
 			// we will give it a sound too
 			.setBlockSound(BlockSounds.CRYSTAL);
@@ -74,9 +78,11 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 		CUSTOM_BLOCK=CustomBlock.build("custom","custom_block",newBlockID(),b -> new BlockLogic(b, Materials.CLOTH));
 
 		// new block
-		// rotatable ( like a workbench )
+		// rotatable ( like a workbench ) for this we need BlockLogicRotatable
 		BlockBuilder RotatableBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS));
-		ROTATABLE_BLOCK=RotatableBlock.build("rotatable","rotatable_block",newBlockID(),b -> new BlockLogicRotatable(b, Materials.WOOD) {
+		ROTATABLE_BLOCK=RotatableBlock.build("rotatable","rotatable_block",newBlockID(),
+			b -> new BlockLogicRotatable(b, Materials.WOOD) {
+			// if you're not sure what onPlacedOnSide is control + click BlockLogicRotatable
 			@Override
 			public void onPlacedOnSide(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
 				super.onPlacedOnSide(world, tilePos, side, xHit, yHit);
@@ -85,6 +91,7 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 		);
 
 		// new block
+		// very rotatable (like a log)
 		BlockBuilder VeryRotatableBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS));
 		VERY_ROTATABLE_BLOCK=VeryRotatableBlock.build("very_rotatable","very_rotatable_block",newBlockID(),b -> new BlockLogicVeryRotatable(b, Materials.WOOD) {
 			@Override

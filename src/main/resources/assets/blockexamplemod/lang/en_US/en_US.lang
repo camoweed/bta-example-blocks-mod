@@ -2,3 +2,7 @@ tile.blockexamplemod.basic.name = Basic Block
 tile.blockexamplemod.basic.desc = A basic block that does nothing without a custom texture.
 tile.blockexamplemod.custom.name = Custom Block
 tile.blockexamplemod.custom.desc = A custom block with a single texture.
+tile.blockexamplemod.rotatable.name = Rotatable Block
+tile.blockexamplemod.rotatable.desc = Rotates like a workbench. Unique textures per face.
+tile.blockexamplemod.very_rotatable.name = Very Rotatable Block
+tile.blockexamplemod.very_rotatable.desc = Rotates like a log.
