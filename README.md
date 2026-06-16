@@ -1,6 +1,8 @@
-# Example Mod
+# Block Example Mod
 
-Template for making Babric mods for BTA!
+<img width="854" height="480" alt="2026-06-16_10 13 19" src="https://github.com/user-attachments/assets/a87300b3-b703-49fd-8b6f-86dcde13bbc7" />
+
+Template for making Babric mods for BTA! Comes with blocks to use as examples.
 
 **Note: *DO NOT fork this repository unless you want to contribute!***
 
