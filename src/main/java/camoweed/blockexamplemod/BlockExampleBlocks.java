@@ -47,6 +47,7 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 	public static Block<?> CUSTOM_BLOCK;
 	public static Block<?> ROTATABLE_BLOCK;
 	public static Block<?> VERY_ROTATABLE_BLOCK;
+	public static Block<BlockLogicStairs> STAIR_BLOCK;
 
 	// the fun part
 	// control + click BlockBuilder for more detailed info
@@ -100,6 +101,14 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 			}
 		}
 		);
+
+		BlockBuilder StairBlock = new BlockBuilder((MOD_ID)).setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.BASICS));
+		STAIR_BLOCK=StairBlock.
+			// standard building
+			build("stair", "stair_block",newBlockID(),
+			// need to use another block as a "base" model, can be base game stuff, set to a custom block to chose texture/properties
+			b -> new BlockLogicStairs(b, CUSTOM_BLOCK));
+
 	}
 	@Override
 	public void afterBlockInit() {
