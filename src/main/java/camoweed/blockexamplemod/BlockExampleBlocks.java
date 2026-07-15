@@ -106,7 +106,8 @@ public class BlockExampleBlocks implements BlockInitEntrypoint {
 		STAIR_BLOCK=StairBlock.
 			// standard building
 			build("stair", "stair_block",newBlockID(),
-			// need to use another block as a "base" model, can be base game stuff, set to a custom block to chose texture/properties
+			// need to use another block as a "base" model, can be base game stuff, set to a custom block to chose properties
+				// see BlockExampleModels for giving it a texture
 			b -> new BlockLogicStairs(b, CUSTOM_BLOCK));
 
 	}
