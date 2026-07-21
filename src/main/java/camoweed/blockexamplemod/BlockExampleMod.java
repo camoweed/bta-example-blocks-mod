@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.HalpLibe;
+import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
@@ -39,6 +40,7 @@ public class BlockExampleMod implements ModInitializer, GameStartEntrypoint, Rec
 
 	@Override
 	public void initNamespaces() {
-
+		RecipeBuilder.initNameSpace(MOD_ID);
+		RecipeBuilder.getRecipeNamespace(MOD_ID);
 	}
 }
